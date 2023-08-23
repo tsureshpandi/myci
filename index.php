@@ -53,6 +53,25 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
+	$env = "";
+
+	if (is_readable('./env.php'))
+	{
+		include('./env.php');
+	}
+
+	$is_debug = empty($_GET['obdebug']) ? false : true;
+
+	if ($is_debug)
+	{
+		$env = 'development';
+	}
+
+	if (isset($env))
+	{
+		$_SERVER['CI_ENV'] = $env;
+	}
+
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
 /*
@@ -115,6 +134,11 @@ switch (ENVIRONMENT)
  * NO TRAILING SLASH!
  */
 	$application_folder = 'application';
+
+	if (!empty($app))
+	{
+ 		$application_folder = $app;
+ 	}
 
 /*
  *---------------------------------------------------------------

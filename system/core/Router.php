@@ -122,6 +122,9 @@ class CI_Router {
 	 * @param	array	$routing
 	 * @return	void
 	 */
+
+	protected $uri;
+
 	public function __construct($routing = NULL)
 	{
 		$this->config =& load_class('Config', 'core');
